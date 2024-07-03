@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="farmers.css">
+    <title>Farmer Request Form</title>
+</head>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_354f9da3f288761b9f2ec6cdb6ec129f7'
+    });
+</script>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html"><i class="fa fa-fw fa-home"></i>&nbspHome</a></li>
+            <li><a href="home.html"><i class="fa-solid fa-rocket"></i>&nbspAbout Us</a></li>
+            <li><a href="home.html"><i class="fa fa-fw fa-envelope"></i>&nbspContact Us</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><i class="fa-brands fa-pagelines"></i>&nbspFarmer Community</a>
+                <div class="dropdown-content">
+                    <a href="askQuestion.html">Ask Queries</a>
+                    <a href="crop_disease.html">Crop Disease Detection</a>
+                    <a href="farmers.html">Crowd Funding</a>
+                    <a href="agroguidance.html">Agriculture Guidance</a>
+                    <a href="/rss/rss-feed">Agricultural Updates</a>
+                    <a href="ecommerce.html">Buy Organic Vegetables</a>
+                </div>
+            </li>
+            <li><span id="welcomeUser" style="color: white; font-size: larger; padding-left: 130px;"></span></li>
+        </ul>
+    </nav>
+    <h1>Submit Your Request</h1>
+    <form id="requestForm">
+        <div class="input-group">
+            <input type="text" name="name" placeholder="Full Name" required>
+        </div>
+        <div class="input-group">
+            <textarea name="description" placeholder="Description of Financial Need" required></textarea>
+        </div>
+        <div class="input-group">
+            <input type="text" name="contact" placeholder="Contact Information" required>
+        </div>
+        <div class="input-group">
+            <input type="number" name="price" placeholder="Required Amount" required>
+        </div>
+        <div class="submit-button">
+            <button type="submit">Submit Request</button>
+        </div>
+    </form>
+
+    <h1>Farmers Requests</h1>
+    <div id="farmerList"></div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('requestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => (data[key] = value));
+
+            fetch('/farmers/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                    fetchRequests(); // Refresh the list of requests
+                } else {
+                    alert('Error submitting request');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Fetch and display requests
+        function fetchRequests() {
+            fetch('/farmers')
+                .then(response => response.json())
+                .then(farmers => {
+                    const farmerList = document.getElementById('farmerList');
+                    farmerList.innerHTML = ''; // Clear previous requests
+                    farmers.forEach(farmer => {
+                        const farmerItem = document.createElement('div');
+                        farmerItem.classList.add('farmer-item');
+                        farmerItem.innerHTML = `
+                            <h2>${farmer.name}</h2>
+                            <p>Description: ${farmer.description}</p>
+                            <p>Contact: ${farmer.contact}</p>
+                            <p>Required Amount: ${farmer.price}</p>
+                            ${farmer.verified ? '<span class="verified">Verified</span>' : '<span class="unverified">Unverified</span>'}
+                            <button class="help-button" onclick="redirectToBank()">Help</button>
+                        `;
+                        farmerList.appendChild(farmerItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching farmers:', error));
+        }
+
+        // Function to redirect to bank's website
+        function redirectToBank() {
+            window.location.href = 'qr.html'; // Replace with actual bank website URL
+        }
+
+        // Initial fetch of requests
+        fetchRequests();
+    </script>
+</body>
+</html>

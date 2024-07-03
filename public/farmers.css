@@ -1,0 +1,173 @@
+/* farmers.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+  }
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .navbar li {
+    margin: 0 50px;
+    position: relative; /* For dropdown */
+  }
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    font-family: Poppins;
+    font-size: 1.2em;
+  }
+  .navbar .dropdown .dropbtn {
+    cursor: pointer;
+  }
+  .navbar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .navbar .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1em;
+  }
+  .navbar .dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .navbar .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 170px;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.input-group textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    text-align: center;
+}
+
+.submit-button button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button button:hover {
+    background-color: #218838;
+}
+
+#farmerList {
+    width: 100%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.farmer-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.farmer-item h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.farmer-item p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.verified,
+.unverified {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.verified {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.unverified {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.help-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.help-button:hover {
+    background-color: #0056b3;
+}

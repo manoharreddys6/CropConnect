@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background-color: #f4f7f6;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/pexels-fox-212324.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.header {
+    height: auto;
+    max-width: 80vw;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #34495e;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.buttons {
+    margin-top: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: #27ae60;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: #219150;
+    transform: translateY(-2px);
+}
+
+#google_translate {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    text-align: right;
+}
+
+.goog-te-combo {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+}
+
+.goog-logo-link {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    color: transparent !important;
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        width: 90vw;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+}

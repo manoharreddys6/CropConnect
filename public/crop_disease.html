@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Disease Detection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+  }
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .navbar li {
+    margin: 0 50px;
+    position: relative; /* For dropdown */
+  }
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    font-family: Poppins;
+    font-size: 1.2em;
+  }
+  .navbar .dropdown .dropbtn {
+    cursor: pointer;
+  }
+  .navbar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .navbar .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1em;
+  }
+  .navbar .dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .navbar .dropdown:hover .dropdown-content {
+    display: block;
+  }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            margin-top: 100px;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 0 auto;
+            padding: 10px;
+            border: 2px solid #2c3e50;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #34495e;
+        }
+        #result {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .disease-info {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .disease-info img {
+            max-width: 100px;
+            display: block;
+            margin: 10px 0;
+        }
+        .disease-info h3 {
+            color: #e74c3c;
+        }
+        .disease-info ul {
+            padding-left: 20px;
+        }
+        .disease-info ul li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_354f9da3f288761b9f2ec6cdb6ec129f7'
+    });
+</script>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html"><i class="fa fa-fw fa-home"></i>&nbspHome</a></li>
+            <li><a href="home.html"><i class="fa-solid fa-rocket"></i>&nbspAbout Us</a></li>
+            <li><a href="home.html"><i class="fa fa-fw fa-envelope"></i>&nbspContact Us</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><i class="fa-brands fa-pagelines"></i>&nbspFarmer Community</a>
+                <div class="dropdown-content">
+                    <a href="askQuestion.html">Ask Queries</a>
+                    <a href="crop_disease.html">Crop Disease Detection</a>
+                    <a href="farmers.html">Crowd Funding</a>
+                    <a href="agroguidance.html">Agriculture Guidance</a>
+                    <a href="/rss/rss-feed">Agricultural Updates</a>
+                    <a href="ecommerce.html">Buy Organic Vegetables</a>
+                </div>
+            </li>
+            <li><span id="welcomeUser" style="color: white; font-size: larger; padding-left: 130px;"></span></li>
+        </ul>
+    </nav>
+    <h1>Crop Disease Detection</h1>
+    <input type="file" id="cropImage" accept="image/*">
+    <button onclick="uploadImage()">Upload and Detect Disease</button>
+    <div id="result"></div>
+
+    <script>
+        // Function to handle image upload and disease detection
+        function uploadImage() {
+            var fileInput = document.getElementById('cropImage');
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var base64Image = event.target.result.split(',')[1];
+
+                    var myHeaders = new Headers();
+                    myHeaders.append("Api-Key", "U2A0tz7D0i1OeMjqCY2a0uZCF91gh71xmOzyj4YogTXb6WcvQs");
+                    myHeaders.append("Content-Type", "application/json");
+
+                    var raw = JSON.stringify({
+                        "images": [base64Image],
+                        "similar_images": true
+                    });
+
+                    var requestOptions = {
+                        method: 'POST',
+                        headers: myHeaders,
+                        body: raw,
+                        redirect: 'follow'
+                    };
+
+                    fetch("https://crop.kindwise.com/api/v1/identification?details=type,common_names,eppo_code,wiki_url,taxonomy&language=en", requestOptions)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            displayResults(data);
+                        })
+                        .catch(error => console.log('Error:', error));
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('No file selected');
+            }
+        }
+
+        // Function to display the results from the API
+        function displayResults(data) {
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "";
+
+            if (data.result && data.result.disease && data.result.disease.suggestions) {
+                // Find the suggestion with the highest probability
+                var highestProbabilitySuggestion = data.result.disease.suggestions.reduce((prev, current) => (prev.probability > current.probability) ? prev : current);
+
+                var diseaseInfo = `
+                    <div class="disease-info">
+                        <h3>Most Likely Disease: ${highestProbabilitySuggestion.name}</h3>
+                        <p><strong>Probability:</strong> ${(highestProbabilitySuggestion.probability * 100).toFixed(2)}%</p>
+                        <p><strong>Scientific Name:</strong> ${highestProbabilitySuggestion.scientific_name}</p>
+                        ${highestProbabilitySuggestion.details.eppo_regulation_status ? `
+                        <p><strong>Regulation Status:</strong></p>
+                        <ul>
+                            ${Object.keys(highestProbabilitySuggestion.details.eppo_regulation_status).map(country => `
+                                <li>${country}: ${highestProbabilitySuggestion.details.eppo_regulation_status[country]}</li>
+                            `).join('')}
+                        </ul>` : ''}
+                        <h4>Similar Images:</h4>
+                        ${highestProbabilitySuggestion.similar_images ? highestProbabilitySuggestion.similar_images.map(image => `
+                            <div>
+                                <img src="${image.url_small}" alt="Similar Image">
+                                ${image.license_name ? `<p><strong>License:</strong> <a href="${image.license_url}">${image.license_name}</a></p>` : ''}
+                                ${image.citation ? `<p><strong>Citation:</strong> ${image.citation}</p>` : ''}
+                            </div>
+                        `).join('') : '<p>No similar images available</p>'}
+                    </div>
+                `;
+
+                resultDiv.innerHTML += diseaseInfo;
+
+                // Note other detected diseases
+                if (data.result.disease.suggestions.length > 1) {
+                    var otherDiseases = data.result.disease.suggestions.filter(suggestion => suggestion !== highestProbabilitySuggestion);
+                    resultDiv.innerHTML += `
+                        <div>
+                            <h3>Other Possible Diseases:</h3>
+                            <ul>
+                                ${otherDiseases.map(suggestion => `
+                                    <li>${suggestion.name} (Probability: ${(suggestion.probability * 100).toFixed(2)}%)</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+            } else {
+                resultDiv.innerHTML = "<p>No disease detected.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

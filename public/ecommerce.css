@@ -1,0 +1,175 @@
+
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Product List Styles */
+#productList, #cartList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product, .cart-item {
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 40px);
+    box-sizing: border-box;
+}
+
+.product h3, .cart-item h3 {
+    margin-top: 0;
+}
+
+.product p, .cart-item p {
+    margin: 5px 0;
+}
+
+.product button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #008CBA;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.product button:hover {
+    background-color: #007BB5;
+}
+
+/* Cart Item Styles */
+.cart-item {
+    position: relative;
+}
+
+.cart-item .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.cart-item .delete-btn:hover {
+    background-color: #dd191d;
+}
+
+
+
+#checkoutButton {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#checkoutButton:hover {
+    background-color: #0056b3;
+}
+
+.content{
+    display: flex;
+    background-color: #4CAF50;
+    
+}
+
+.content img{
+    height:400px;
+    width:500px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.content .left{
+    width:35%;
+    padding: 50px 80px;
+}
+
+.content .right{
+    width:75%;
+    padding: 100px 80px;
+    font-size: 24px;
+    text-align: justify;
+
+}

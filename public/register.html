@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="register.css">
+    <title>Register</title>
+
+    <script>
+        function toggleCheckbox(checkbox) {
+            var checkboxes = document.querySelectorAll('.radio');
+            checkboxes.forEach(function(box) {
+                if (box !== checkbox) {
+                    box.checked = false;
+                }
+            });
+        }
+    </script>
+
+</head>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_354f9da3f288761b9f2ec6cdb6ec129f7'
+    });
+</script>
+<body>
+    <div class="container">
+        <form action="/register" method="POST">
+            <h2>Register</h2>
+            <div class="input-group">
+                <input type="text" name="fullname" placeholder="Full Name" required>
+            </div>
+            <div class="input-group">
+                <input type="number" name="age" placeholder="Age" minlength="1" maxlength="3" required>
+            </div>
+            <div class="input-group">
+                <input type="number" name="phone" placeholder="Mobile Number" minlength="10" maxlength="10" required>
+            </div>
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email">
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <!-- Address Fields -->
+            <div class="input-group">
+                <input type="text" name="address1" placeholder="Address Line 1" required>
+            </div>
+            <div class="input-group">
+                <input type="text" name="address2" placeholder="Address Line 2">
+            </div>
+            <div class="input-group">
+                <input type="text" name="city" placeholder="Village/City" required>
+            </div>
+            <div class="input-group">
+                <input type="number" name="pincode" placeholder="Pincode" required>
+            </div>
+            <div class="input-group">
+                <input type="text" name="state" placeholder="State" required>
+            </div>
+
+            <div class="cbox">
+                <p>Gender: </p>
+                <label>
+                    <input type="checkbox" class="radio" value="male" name="gender" onclick="toggleCheckbox(this)">Male
+                </label>
+                <label>
+                    <input type="checkbox" class="radio" value="female" name="gender" onclick="toggleCheckbox(this)">Female
+                </label>
+                <label>
+                    <input type="checkbox" class="radio" value="others" name="gender" onclick="toggleCheckbox(this)">Others
+                </label>
+            </div>
+
+            <div class="submit_button">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

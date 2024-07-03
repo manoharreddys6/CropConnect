@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-time RSS Feed Updates</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7f6;
+      color: #333;
+      margin: 20px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+  }
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .navbar li {
+    margin: 0 50px;
+    position: relative; /* For dropdown */
+  }
+  .navbar a {
+    text-decoration: none;
+    color: white;
+    font-family: Poppins;
+    font-size: 1.2em;
+  }
+  .navbar .dropdown .dropbtn {
+    cursor: pointer;
+  }
+  .navbar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  .navbar .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 1em;
+  }
+  .navbar .dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .navbar .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      margin-top: 50px;
+    }
+    #rssFeed {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    a {
+      text-decoration: none;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    p {
+      margin: 10px 0;
+    }
+    small {
+      color: #777;
+    }
+  </style>
+</head>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_354f9da3f288761b9f2ec6cdb6ec129f7'
+    });
+</script>
+<body>
+
+  <div id="rssFeed"></div>
+
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+  <script>
+    const socket = io('http://localhost:3000');
+
+    socket.on('rssUpdate', (feed) => {
+      console.log('Received RSS update:', feed);
+      displayFeed(feed);
+    });
+
+    function displayFeed(feed) {
+      const rssFeedContainer = document.getElementById('rssFeed');
+      let html = '<h1>Real-time Agricultural Updates</h1>';
+      html += '<ul>';
+
+      feed.items.forEach(item => {
+        html += `<li>
+          <a href="${item.link}" target="_blank">${item.title}</a>
+          <p>${item.contentSnippet}</p>
+          <p><small>${item.pubDate}</small></p>
+        </li>`;
+      });
+
+      html += '</ul>';
+
+      rssFeedContainer.innerHTML = html;
+    }
+  </script>
+</body>
+</html>

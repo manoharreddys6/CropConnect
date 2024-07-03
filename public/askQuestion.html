@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Question</title>
+    <link rel="stylesheet" href="queries.css">
+</head>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_354f9da3f288761b9f2ec6cdb6ec129f7'
+    });
+</script>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html"><i class="fa fa-fw fa-home"></i>&nbspHome</a></li>
+            <li><a href="home.html"><i class="fa-solid fa-rocket"></i>&nbspAbout Us</a></li>
+            <li><a href="home.html"><i class="fa fa-fw fa-envelope"></i>&nbspContact Us</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><i class="fa-brands fa-pagelines"></i>&nbspFarmer Community</a>
+                <div class="dropdown-content">
+                    <a href="askQuestion.html">Ask Queries</a>
+                    <a href="crop_disease.html">Crop Disease Detection</a>
+                    <a href="farmers.html">Crowd Funding</a>
+                    <a href="agroguidance.html">Agriculture Guidance</a>
+                    <a href="/rss/rss-feed">Agricultural Updates</a>
+                    <a href="ecommerce.html">Buy Organic Vegetables</a>
+                </div>
+            </li>
+            <li><span id="welcomeUser" style="color: white; font-size: larger; padding-left: 130px;"></span></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Ask a Question</h1>
+        
+        <div class="post-form">
+            <h2>Post a Problem</h2>
+            <input type="text" id="questionId" placeholder="Question ID">
+            <input type="text" id="problemTitle" placeholder="Problem Title">
+            <textarea id="problemDescription" placeholder="Describe your problem..."></textarea>
+            <input type="file" id="problemImage" accept="image/*">
+            <button onclick="postProblem()">Post</button>
+        </div>
+
+        <a href="displayQueries.html">View All Problems</a>
+    </div>
+
+    <script src="askQuestions.js"></script>
+</body>
+</html>

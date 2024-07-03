@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script type="module">
+      document.addEventListener('DOMContentLoaded', () => {
+          const urlParams = new URLSearchParams(window.location.search);
+          const fullname = urlParams.get('fullname');
+          
+          const displayQueriesLink = document.querySelector('a[href="displayQueries.html"]');
+          if (fullname) {
+              document.getElementById('welcomeUser').textContent = `Welcome ${fullname}`;
+              displayQueriesLink.href = `displayQueries.html?fullname=${fullname}`;
+          } else {
+              document.getElementById('welcomeUser').textContent = `Welcome Guest`;
+          }
+      });
+  </script>
+    <script>
+          
+      document.addEventListener('DOMContentLoaded', () => {
+        const counters = document.querySelectorAll('.num');
+        const speed = 200; // Adjust speed here
+    
+        counters.forEach(counter => {
+          const updateCount = () => {
+            const target = +counter.getAttribute('data-val');
+            const count = +counter.innerText;
+    
+            const increment = target / speed;
+    
+            if (count < target) {
+              counter.innerText = Math.ceil(count + increment);
+              setTimeout(updateCount, 10);
+            } else {
+              counter.innerText = target;
+            }
+          };
+    
+          updateCount();
+        });
+      });
+    
+    
+        </script>
+</head>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_354f9da3f288761b9f2ec6cdb6ec129f7'
+    });
+</script>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home"><i class="fa fa-fw fa-home"></i>&nbspHome</a></li>
+            <li><a href="#about-us"><i class="fa-solid fa-rocket"></i>&nbspAbout Us</a></li>
+            <li><a href="#contact-us"><i class="fa fa-fw fa-envelope"></i>&nbspContact Us</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn"><i class="fa-brands fa-pagelines"></i>&nbspFarmer Community</a>
+                <div class="dropdown-content">
+                    <a href="askQuestion.html">Ask Queries</a>
+                    <a href="crop_disease.html">Crop Disease Detection</a>
+                    <a href="farmers.html">Crowd Funding</a>
+                    <a href="agroguidance.html">Agriculture Guidance</a>
+                    <a href="/rss/rss-feed">Agricultural Updates</a>
+                    <a href="ecommerce.html">Buy Organic Vegetables</a>
+                </div>
+            </li>
+            <li><span id="welcomeUser" style="color: white; font-size: larger; padding-left: 130px;"></span></li>
+        </ul>
+    </nav>
+    <div class="section1" id="home">
+        <div class="text">
+            <h1>CROP CONNECT</h1>
+            <p>-&nbsp&nbspSow the Seed, Reap the Future</p>
+        </div>
+    </div>
+    <div class="section2" id="about-us">
+        <div class="about-section">
+            <h1>About Us</h1>
+            <p>Our web application aims to address the challenges faced by farmers by promoting economic growth through innovation in the agricultural sector. By integrating technology with farming, we seek to make agriculture a viable and attractive career option for the youth. Our platform offers six main functionalities designed to support farmers and encourage youth involvement in agriculture such as Farmers Community Group, Crop Disease detection, Crowd Funding, Agricultural Guidance, Agricultural Updates and Weather details.</p>
+            <div class="card-container">
+                <div class="card">
+                    <h2><span class="num" data-val="1340">000</span></h2>
+                    <p>members in the farmer community group, reflecting our collective dedication to mutual support.</p>
+                </div>
+                <div class="card">
+                    <h2><span class="num" data-val="1340">000</span></h2>
+                    <p>agriculture experts, dedicated to advancing sustainable farming and sharing knowledge.</p>
+                </div>
+                <div class="card">
+                    <h2><span class="num" data-val="1340">000</span></h2>
+                    <p>number of queries raised by the members of our farmer community</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section3" id="contact-us">
+        <div class="container">
+            <div class="contact-section">
+                <h1>Contact Us</h1>
+                <p>If you have any questions or need further information, feel free to contact us using the form below or through our social media channels.</p>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <p><i class="fa fa-phone"></i>&nbsp&nbsp+1234567890</p>
+                        <p><i class="fa fa-envelope"></i>&nbsp&nbspprojectfarmer@gmail.com</p>
+                        <br>
+                        <h3>Follow Us</h3>
+                        <p>
+                            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>&nbsp
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>&nbsp
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>&nbsp
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </p>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="input-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" name="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="input-group">
+                                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
